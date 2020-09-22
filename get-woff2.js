@@ -56,6 +56,6 @@ function toSvg(glyphsData, fontName) {
 export default async function getWoff2(files, fontName, getUnicode) {
 	const glyphsData = await getGlyphsData(files, getUnicode);
 	const svg = await toSvg(glyphsData, fontName);
-	const ttf = Buffer.from(svg2ttf(svg, {}).buffer);
+	const ttf = Buffer.from(svg2ttf(svg, {copyright: null, ts: null, version: null}).buffer);
 	return wawoff2.compress(ttf);
 }
