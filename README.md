@@ -4,7 +4,7 @@ Build `icons.js` in the target directory.
 
 ## Usage
 
-Create `./pkgs/@cfware-app/icons/icon-chars.js`:
+Create `./pkgs/icon/icon-chars.js`:
 ```js
 export const iconChars = {
 	ban: '\uF05E',
@@ -35,16 +35,16 @@ values should be the Unicode point to produce for the WOFF2 font.
 ```
 npm i -D @cfware/icon-builder
 npm i @cfware/shadow-element
-npx cfware-iconbuilder ./pkgs/@cfware-app/icons ./pkgs/@cfware-app/icons/icon-chars.js iconChars
+npx cfware-iconbuilder ./pkgs/icon ./pkgs/icon/icon-chars.js iconChars
 ```
 
-This command will produce `./pkgs/@cfware-app/icons/icons.js`.  Importing that file will
-register the custom element `cfware-icons`.  An example usage is:
+This command will produce `./pkgs/icon/icon.js`.  Importing that file will
+register the custom element `cfware-icon`.  An example usage is:
 ```js
-const banIcon = () => html`<cfware-icons>\uF05E</cfware-icons>`;
+const banIcon = () => html`<cfware-icon icon="\uF05E" />`;
 ```
 
-In addition `./pkgs/@cfware-app/icons/fontawesome-free` will be created containing the
+In addition `./pkgs/icon/fontawesome-free` will be created containing the
 `package.json` and `LICENSE.txt` files installed by `@fortawesome/fontawesome-free`.
 
 [npm-image]: https://img.shields.io/npm/v/@cfware/icon-builder.svg
