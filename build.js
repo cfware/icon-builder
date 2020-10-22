@@ -24,7 +24,16 @@ export default async function build(outputDirectory, iconCharsSource, iconCharsE
 	const fontAwesomeOutput = path.join(outputDirectory, 'fontawesome-free');
 	await fs.mkdir(fontAwesomeOutput, {recursive: true});
 	await fs.copyFile(path.join(fontAwesomeDirectory, 'LICENSE.txt'), path.join(fontAwesomeOutput, 'LICENSE.txt'));
-	await fs.copyFile(path.join(fontAwesomeDirectory, 'package.json'), path.join(fontAwesomeOutput, 'package.json'));
+
+	const packageInfo = JSON.parse(await fs.readFile(path.join(fontAwesomeDirectory, 'package.json'), 'utf8'));
+	// Strip out npmjs.com generated package.json info except for _integrity.
+	for (const key of Object.keys(packageInfo)) {
+		if (key.startsWith('_') && key !== '_integrity') {
+			delete packageInfo[key];
+		}
+	}
+
+	await fs.writeFile(path.join(fontAwesomeOutput, 'package.json'), `${JSON.stringify(packageInfo, null, 2)}\n`);
 }
 
 build(...process.argv.slice(2)).catch(error => {
