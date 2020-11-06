@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/cfware/icon-builder/compare/v0.2.1...v0.3.0) (2020-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* Upgrade @cfware/shadow-element
+
+### Features
+
+* Upgrade @cfware/shadow-element ([4227e7e](https://github.com/cfware/icon-builder/commit/4227e7e2dc466aebfec4c4a0f8192bc64ca909d2))
+
 ### [0.2.1](https://github.com/cfware/icon-builder/compare/v0.2.0...v0.2.1) (2020-10-22)
 
 
