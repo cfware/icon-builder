@@ -1,6 +1,6 @@
-import {Readable} from 'stream';
-import fs from 'fs';
-import path from 'path';
+import {Readable} from 'node:stream';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import SVGIcons2SVGFontStream from 'svgicons2svgfont';
 import pMap from 'p-map';
 import svg2ttf from 'svg2ttf';
@@ -10,7 +10,7 @@ async function getGlyphsData(files, getUnicode) {
 	const glyphsData = await pMap(files, async sourcePath => {
 		const name = path.basename(sourcePath, '.svg');
 		return {
-			contents: await fs.promises.readFile(sourcePath, 'utf8'),
+			contents: await fs.readFile(sourcePath, 'utf8'),
 			sourcePath,
 			metadata: {
 				path: sourcePath,
@@ -38,16 +38,15 @@ function toSvg(glyphsData, fontName) {
 			})
 			.on('error', error => reject(error));
 
-		glyphsData.forEach(glyphData => {
+		for (const glyphData of glyphsData) {
 			const glyphStream = new Readable();
 
 			glyphStream.push(glyphData.contents);
 			glyphStream.push(null);
-
 			glyphStream.metadata = glyphData.metadata;
 
 			fontStream.write(glyphStream);
-		});
+		}
 
 		fontStream.end();
 	});

@@ -6,7 +6,7 @@
 	"license": "MIT",
 	"type": "module",
 	"engines": {
-		"node": ">=14.0.0"
+		"node": ">=16.12.0"
 	},
 	"bin": {
 		"cfware-iconbuilder": "./build.js"
@@ -24,14 +24,14 @@
 	},
 	"homepage": "https://github.com/cfware/icon-builder#readme",
 	"dependencies": {
-		"@fortawesome/fontawesome-free": "^5.15.1",
-		"p-map": "^4.0.0",
-		"svg2ttf": "^5.0.0",
-		"svgicons2svgfont": "^9.1.1",
-		"wawoff2": "^1.0.2"
+		"@fortawesome/fontawesome-free": "^5",
+		"p-map": "^5.5.0",
+		"svg2ttf": "^6.0.3",
+		"svgicons2svgfont": "^12.0.0",
+		"wawoff2": "^2.0.1"
 	},
 	"devDependencies": {
-		"@cfware/shadow-element": "^0.16.0",
-		"@cfware/lint": "^2.0.4"
+		"@cfware/shadow-element": "^0.17.0",
+		"@cfware/lint": "^3.0.5"
 	}
 }

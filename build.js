@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import fs from 'fs/promises';
-import path from 'path';
-import {createRequire} from 'module';
-import {fileURLToPath, pathToFileURL} from 'url';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {createRequire} from 'node:module';
+import {fileURLToPath, pathToFileURL} from 'node:url';
 import getWoff2 from './get-woff2.js';
 
 const require = createRequire(import.meta.url);
@@ -10,10 +10,11 @@ const require = createRequire(import.meta.url);
 const fontAwesomeDirectory = path.dirname(require.resolve('@fortawesome/fontawesome-free/package.json'));
 
 export default async function build(outputDirectory, iconCharsSource, iconCharsExport = 'default') {
-	const iconChars = (await import(pathToFileURL(path.resolve(iconCharsSource))))[iconCharsExport];
+	const iconsImport = await import(pathToFileURL(path.resolve(iconCharsSource)));
+	const iconChars = iconsImport[iconCharsExport];
 	const files = Object.keys(iconChars).map(id => `${fontAwesomeDirectory}/svgs/solid/${id}.svg`);
 	const woff2 = await getWoff2(files, 'cfware-icons', name => [iconChars[name]]);
-	const iconsTemplate = await fs.readFile(fileURLToPath(new URL('./icons-template.js', import.meta.url)), 'utf8');
+	const iconsTemplate = await fs.readFile(fileURLToPath(new URL('icons-template.js', import.meta.url)), 'utf8');
 
 	await fs.writeFile(
 		path.join(outputDirectory, 'icons.js'),
