@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/cfware/icon-builder/compare/v0.3.0...v0.4.0) (2022-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update @cfware/shadow-element
+* Require Node.js 16
+
+### Features
+
+* Update dependencies ([5cbac05](https://github.com/cfware/icon-builder/commit/5cbac05d6147d4b6ad3568d778ef3193c346de59))
+
 ## [0.3.0](https://github.com/cfware/icon-builder/compare/v0.2.1...v0.3.0) (2020-11-06)
 
 
