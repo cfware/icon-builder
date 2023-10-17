@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/cfware/icon-builder/compare/v0.4.0...v1.0.0) (2023-10-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update dependencies
+
+### Bug Fixes
+
+* Update dependencies ([a105b49](https://github.com/cfware/icon-builder/commit/a105b49a1c9df04f10ecb61b6d80c8efda5a7094))
+
 ## [0.4.0](https://github.com/cfware/icon-builder/compare/v0.3.0...v0.4.0) (2022-08-27)
 
 
