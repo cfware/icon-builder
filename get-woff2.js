@@ -7,54 +7,54 @@ import svg2ttf from 'svg2ttf';
 import wawoff2 from 'wawoff2';
 
 async function getGlyphsData(files, getUnicode) {
-	const glyphsData = await pMap(files, async sourcePath => {
-		const name = path.basename(sourcePath, '.svg');
-		return {
-			contents: await fs.readFile(sourcePath, 'utf8'),
-			sourcePath,
-			metadata: {
-				path: sourcePath,
-				name,
-				unicode: getUnicode(name, sourcePath),
-				renamed: false
-			}
-		};
-	}, {concurrency: 100});
+    const glyphsData = await pMap(files, async sourcePath => {
+        const name = path.basename(sourcePath, '.svg');
+        return {
+            contents: await fs.readFile(sourcePath, 'utf8'),
+            sourcePath,
+            metadata: {
+                path: sourcePath,
+                name,
+                unicode: getUnicode(name, sourcePath),
+                renamed: false
+            }
+        };
+    }, {concurrency: 100});
 
-	return glyphsData;
+    return glyphsData;
 }
 
 function toSvg(glyphsData, fontName) {
-	let result = '';
+    let result = '';
 
-	return new Promise((resolve, reject) => {
-		const fontStream = new SVGIcons2SVGFontStream({
-			fontName,
-			log() {}
-		})
-			.on('finish', () => resolve(result))
-			.on('data', data => {
-				result += data;
-			})
-			.on('error', error => reject(error));
+    return new Promise((resolve, reject) => {
+        const fontStream = new SVGIcons2SVGFontStream({
+            fontName,
+            log() {}
+        })
+            .on('finish', () => resolve(result))
+            .on('data', data => {
+                result += data;
+            })
+            .on('error', error => reject(error));
 
-		for (const glyphData of glyphsData) {
-			const glyphStream = new Readable();
+        for (const glyphData of glyphsData) {
+            const glyphStream = new Readable();
 
-			glyphStream.push(glyphData.contents);
-			glyphStream.push(null);
-			glyphStream.metadata = glyphData.metadata;
+            glyphStream.push(glyphData.contents);
+            glyphStream.push(null);
+            glyphStream.metadata = glyphData.metadata;
 
-			fontStream.write(glyphStream);
-		}
+            fontStream.write(glyphStream);
+        }
 
-		fontStream.end();
-	});
+        fontStream.end();
+    });
 }
 
 export default async function getWoff2(files, fontName, getUnicode) {
-	const glyphsData = await getGlyphsData(files, getUnicode);
-	const svg = await toSvg(glyphsData, fontName);
-	const ttf = Buffer.from(svg2ttf(svg, {copyright: null, ts: null, version: null}).buffer);
-	return wawoff2.compress(ttf);
+    const glyphsData = await getGlyphsData(files, getUnicode);
+    const svg = await toSvg(glyphsData, fontName);
+    const ttf = Buffer.from(svg2ttf(svg, {copyright: null, ts: null, version: null}).buffer);
+    return wawoff2.compress(ttf);
 }

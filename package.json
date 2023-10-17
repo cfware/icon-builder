@@ -1,37 +1,37 @@
 {
-	"name": "@cfware/icon-builder",
-	"version": "0.4.0",
-	"description": "Build `icons.js` in the target directory",
-	"author": "Corey Farrell",
-	"license": "MIT",
-	"type": "module",
-	"engines": {
-		"node": ">=16.12.0"
-	},
-	"bin": {
-		"cfware-iconbuilder": "./build.js"
-	},
-	"scripts": {
-		"test": "cfware-lint ."
-	},
-	"keywords": [],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/cfware/icon-builder.git"
-	},
-	"bugs": {
-		"url": "https://github.com/cfware/icon-builder/issues"
-	},
-	"homepage": "https://github.com/cfware/icon-builder#readme",
-	"dependencies": {
-		"@fortawesome/fontawesome-free": "^5",
-		"p-map": "^5.5.0",
-		"svg2ttf": "^6.0.3",
-		"svgicons2svgfont": "^12.0.0",
-		"wawoff2": "^2.0.1"
-	},
-	"devDependencies": {
-		"@cfware/shadow-element": "^0.17.0",
-		"@cfware/lint": "^3.0.5"
-	}
+    "name": "@cfware/icon-builder",
+    "version": "0.4.0",
+    "description": "Build `icons.js` in the target directory",
+    "author": "Corey Farrell",
+    "license": "MIT",
+    "type": "module",
+    "engines": {
+        "node": ">=18"
+    },
+    "bin": {
+        "cfware-iconbuilder": "./build.js"
+    },
+    "scripts": {
+        "test": "cfware-lint ."
+    },
+    "keywords": [],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cfware/icon-builder.git"
+    },
+    "bugs": {
+        "url": "https://github.com/cfware/icon-builder/issues"
+    },
+    "homepage": "https://github.com/cfware/icon-builder#readme",
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5",
+        "p-map": "^6",
+        "svg2ttf": "^6",
+        "svgicons2svgfont": "^12",
+        "wawoff2": "^2"
+    },
+    "devDependencies": {
+        "@cfware/shadow-element": "^1",
+        "@cfware/lint": "^4"
+    }
 }
